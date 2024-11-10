@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document Data</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h2>Document Data</h2>
+        <div id="output"></div>
+    </div>
+
+    <script>
+        // Mendapatkan parameter `id` dari URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+
+        // Memuat data dari file JSON
+        fetch('data.json')
+            .then(response => response.json())
+            .then(data => {
+                // Cari data berdasarkan `id`
+                const documentData = data.find(item => item.id === id);
+
+                if (documentData) {
+                    // Tampilkan data
+                    const output = `
+                        <div><span class="label">Status Dokumen:</span> <span class="value">${documentData.status}</span></div>
+                        <div><span class="label">Nama Suami:</span> <span class="value">${documentData.namaSuami}</span></div>
+                        <div><span class="label">Nama Istri:</span> <span class="value">${documentData.namaIstri}</span></div>
+                        <div><span class="label">Tanggal Kawin:</span> <span class="value">${documentData.tanggalKawin}</span></div>
+                        <div><span class="label">No. Akta:</span> <span class="value">${documentData.noAkta}</span></div>
+                        <div><span class="label">Daerah:</span> <span class="value">${documentData.daerah}</span></div>
+                        <div><span class="label">Penandatangan:</span> <span class="value">${documentData.penandatangan}</span></div>
+                        <div><span class="label">Tanggal Pindai:</span> <span class="value">${documentData.tglPindai}</span></div>
+                        <div><span class="label">Tanggal Penandatanganan:</span> <span class="value">${documentData.tglPenandatanganan}</span></div>
+                    `;
+                    document.getElementById("output").innerHTML = output;
+                } else {
+                    document.getElementById("output").innerText = "Data tidak ditemukan.";
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+    </script>
+</body>
+</html>

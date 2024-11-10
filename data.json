@@ -1,0 +1,28 @@
+[
+    {
+      "id": "1",
+      "status": "Aktif",
+      "namaSuami": "John Doe",
+      "namaIstri": "Jane Doe",
+      "tanggalKawin": "2022-01-01",
+      "noAkta": "123456",
+      "daerah": "Bogor",
+      "penandatangan": "Dr. Smith",
+      "tglPindai": "2023-05-15T10:00",
+      "tglPenandatanganan": "2023-05-15T12:00"
+    },
+    {
+      "id": "2",
+      "status": "Tidak Aktif",
+      "namaSuami": "Alex Smith",
+      "namaIstri": "Maria Smith",
+      "tanggalKawin": "2021-07-15",
+      "noAkta": "654321",
+      "daerah": "Jakarta",
+      "penandatangan": "Dr. Brown",
+      "tglPindai": "2023-04-10T09:30",
+      "tglPenandatanganan": "2023-04-10T11:00"
+    }
+    
+  ]
+  
