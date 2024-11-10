@@ -1,28 +1,16 @@
-[
-    {
-      "id": "1",
-      "status": "Aktif",
-      "namaSuami": "John Doe",
-      "namaIstri": "Jane Doe",
-      "tanggalKawin": "2022-01-01",
-      "noAkta": "123456",
-      "daerah": "Bogor",
-      "penandatangan": "Dr. Smith",
-      "tglPindai": "2023-05-15T10:00",
-      "tglPenandatanganan": "2023-05-15T12:00"
+{
+    "status_dokumen": "Aktif",
+    "nama_suami": "I Nengah Yoga Putra",
+    "nama_istri": "Ni Kadek Ayu Dara Santhi",
+    "tanggal_kawin": "22-05-2023",
+    "no_akta": "215-KW-15122023-0001",
+    "info_penandatangan": {
+        "daerah": "Personal",
+        "lembaga": "-",
+        "penandatangan": "Jro Mangku Arga"
     },
-    {
-      "id": "2",
-      "status": "Tidak Aktif",
-      "namaSuami": "Alex Smith",
-      "namaIstri": "Maria Smith",
-      "tanggalKawin": "2021-07-15",
-      "noAkta": "654321",
-      "daerah": "Jakarta",
-      "penandatangan": "Dr. Brown",
-      "tglPindai": "2023-04-10T09:30",
-      "tglPenandatanganan": "2023-04-10T11:00"
+    "informasi": {
+        "tanggal_pindai": "10-05-2024 16:24:49",
+        "tgl_penandatanganan": "28-05-2023 14:20:22"
     }
-    
-  ]
-  
+}
