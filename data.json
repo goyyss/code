@@ -1,16 +1,28 @@
-{
-    "status_dokumen": "Aktif",
-    "nama_suami": "I Nengah Yoga Putra",
-    "nama_istri": "Ni Kadek Ayu Dara Santhi",
-    "tanggal_kawin": "22-05-2023",
-    "no_akta": "215-KW-15122023-0001",
-    "info_penandatangan": {
+[
+    {
+        "id": "doc1",
+        "status": "Aktif",
+        "namaSuami": "I Nengah Yoga Putra",
+        "namaIstri": "Ni Kadek Ayu Dara Santhi",
+        "tanggalKawin": "2023-05-22",
+        "noAkta": "215-KW-15122023-0001",
         "daerah": "Personal",
-        "lembaga": "-",
-        "penandatangan": "Jro Mangku Arga"
+        "lembaga": "Bali",
+        "penandatangan": "Jro Mangku Arga",
+        "tglPindai": "2024-05-10T16:49:00",
+        "tglPenandatanganan": "2023-05-28T14:20:22"
     },
-    "informasi": {
-        "tanggal_pindai": "10-05-2024 16:24:49",
-        "tgl_penandatanganan": "28-05-2023 14:20:22"
+    {
+        "id": "doc2",
+        "status": "Tidak Aktif",
+        "namaSuami": "Made Putra",
+        "namaIstri": "Ketut Ayu",
+        "tanggalKawin": "2021-08-15",
+        "noAkta": "216-KW-15122021-0002",
+        "daerah": "Denpasar",
+        "lembaga": "Bali",
+        "penandatangan": "Jro Mangku Raka",
+        "tglPindai": "2023-08-12T10:30:00",
+        "tglPenandatanganan": "2021-08-20T12:45:10"
     }
-}
+]
