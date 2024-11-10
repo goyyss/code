@@ -3,130 +3,103 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Dokumen</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('https://www.example.com/background-image.jpg'); /* URL gambar latar belakang */
-            background-size: cover;
-            background-position: center;
-            color: #333;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .container {
-            background-color: #fff;
-            padding: 20px 30px;
-            border-radius: 8px;
-            box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.1);
-            max-width: 600px;
-            width: 100%;
-        }
-        h2 {
-            font-size: 24px;
-            color: #4CAF50;
-            text-align: center;
-        }
-        .data-item {
-            display: flex;
-            justify-content: space-between;
-            padding: 8px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-        .data-item:last-child {
-            border-bottom: none;
-        }
-        .label {
-            font-weight: bold;
-            color: #555;
-        }
-        .value {
-            color: #333;
-        }
-        .section-header {
-            font-size: 18px;
-            font-weight: bold;
-            color: #333;
-            margin-top: 20px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-            padding-bottom: 5px;
-        }
-    </style>
+    <title>Detail Dokumen</title>
+    <link rel="stylesheet" href="style.css">
 </head>
+<style>body {
+    background-image: url('background.jpg');
+    background-size: cover;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+h2 {
+    text-align: center;
+    color: #0073e6;
+}
+
+.card h3 {
+    color: green;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+p {
+    margin: 10px 0;
+    line-height: 1.6;
+}
+</style>
 <body>
     <div class="container">
-        <h2>Data Dokumen</h2>
-        
-        <div class="data-item">
-            <span class="label">Status Dokumen:</span>
-            <span id="status_dokumen" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">Nama Suami:</span>
-            <span id="nama_suami" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">Nama Istri:</span>
-            <span id="nama_istri" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">Tanggal Kawin:</span>
-            <span id="tanggal_kawin" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">No. Akta:</span>
-            <span id="no_akta" class="value"></span>
-        </div>
-
-        <div class="section-header">Info Penandatangan</div>
-        <div class="data-item">
-            <span class="label">Daerah:</span>
-            <span id="daerah" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">Lembaga:</span>
-            <span id="lembaga" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">Penandatangan:</span>
-            <span id="penandatangan" class="value"></span>
-        </div>
-
-        <div class="section-header">Informasi</div>
-        <div class="data-item">
-            <span class="label">Tanggal Pindai:</span>
-            <span id="tanggal_pindai" class="value"></span>
-        </div>
-        <div class="data-item">
-            <span class="label">Tgl. Penandatanganan:</span>
-            <span id="tgl_penandatanganan" class="value"></span>
-        </div>
+        <h2>Detail Dokumen</h2>
+        <div id="documentData" class="card"></div>
     </div>
 
     <script>
-        // URL ke file JSON
-        const dataUrl = 'https://goyyss.github.io/code/data.json';
+        // Fungsi untuk mendapatkan parameter ID dari URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Fungsi untuk menampilkan data
+        function displayData(data) {
+            const container = document.getElementById('documentData');
+            container.innerHTML = `
+                <h3>Status Dokumen: <span>${data.status}</span></h3>
+                <p><strong>Nama Suami:</strong> ${data.namaSuami}</p>
+                <p><strong>Nama Istri:</strong> ${data.namaIstri}</p>
+                <p><strong>Tanggal Kawin:</strong> ${data.tanggalKawin}</p>
+                <p><strong>No. Akta:</strong> ${data.noAkta}</p>
+                <hr>
+                <h4>Info Penandatangan</h4>
+                <p><strong>Daerah:</strong> ${data.daerah}</p>
+                <p><strong>Lembaga:</strong> ${data.lembaga}</p>
+                <p><strong>Penandatangan:</strong> ${data.penandatangan}</p>
+                <hr>
+                <h4>Informasi</h4>
+                <p><strong>Tanggal Pindai:</strong> ${new Date(data.tglPindai).toLocaleString()}</p>
+                <p><strong>Tgl. Penandatanganan:</strong> ${new Date(data.tglPenandatanganan).toLocaleString()}</p>
+            `;
+        }
 
         // Mengambil data dari file JSON
-        fetch(dataUrl)
-            .then(response => response.json())
-            .then(data => {
-                document.getElementById('status_dokumen').textContent = data.status_dokumen;
-                document.getElementById('nama_suami').textContent = data.nama_suami;
-                document.getElementById('nama_istri').textContent = data.nama_istri;
-                document.getElementById('tanggal_kawin').textContent = data.tanggal_kawin;
-                document.getElementById('no_akta').textContent = data.no_akta;
-                document.getElementById('daerah').textContent = data.info_penandatangan.daerah;
-                document.getElementById('lembaga').textContent = data.info_penandatangan.lembaga;
-                document.getElementById('penandatangan').textContent = data.info_penandatangan.penandatangan;
-                document.getElementById('tanggal_pindai').textContent = data.informasi.tanggal_pindai;
-                document.getElementById('tgl_penandatanganan').textContent = data.informasi.tgl_penandatanganan;
-            })
-            .catch(error => console.error('Error fetching data:', error));
+        async function fetchData() {
+            const id = getQueryParam('id');
+            if (!id) {
+                document.getElementById('documentData').innerText = "ID Dokumen tidak ditemukan di URL.";
+                return;
+            }
+
+            try {
+                const response = await fetch('data.json');
+                const data = await response.json();
+                const documentData = data.find(doc => doc.id === id);
+
+                if (documentData) {
+                    displayData(documentData);
+                } else {
+                    document.getElementById('documentData').innerText = "Data dokumen tidak ditemukan.";
+                }
+            } catch (error) {
+                console.error("Error fetching data:", error);
+                document.getElementById('documentData').innerText = "Gagal memuat data.";
+            }
+        }
+
+        // Memanggil fungsi fetchData saat halaman dimuat
+        window.onload = fetchData;
     </script>
 </body>
 </html>
