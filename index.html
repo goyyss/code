@@ -3,47 +3,88 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Dokumen</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Dokumen Data</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 10px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            padding: 15px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        h2 {
+            color: #333;
+            text-align: center;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .output {
+            margin-top: 15px;
+            padding: 15px;
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .output h3 {
+            font-size: 14px;
+            color: #666;
+            font-weight: bold;
+            margin-top: 10px;
+            margin-bottom: 5px;
+        }
+
+        .output div {
+            padding: 5px 0;
+            font-size: 12px;
+        }
+
+        .output div span.label {
+            font-weight: bold;
+            color: #333;
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .output div span.value {
+            color: #333;
+            display: block;
+            font-size: 14px;
+        }
+
+        .output .status {
+            color: green;
+            font-weight: bold;
+            font-size: 14px;
+        }
+    </style>
 </head>
-<style>body {
-    background-image: url('background.jpg');
-    background-size: cover;
-    font-family: Arial, sans-serif;
-    color: #333;
-}
-
-.container {
-    max-width: 600px;
-    margin: 50px auto;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-h2 {
-    text-align: center;
-    color: #0073e6;
-}
-
-.card h3 {
-    color: green;
-}
-
-hr {
-    margin: 20px 0;
-}
-
-p {
-    margin: 10px 0;
-    line-height: 1.6;
-}
-</style>
 <body>
     <div class="container">
-        <h2>Detail Dokumen</h2>
-        <div id="documentData" class="card"></div>
+        <h2>Informasi Dokumen</h2>
+        <div id="documentData" class="output">
+            <!-- Konten data akan diisi oleh JavaScript -->
+        </div>
     </div>
 
     <script>
@@ -57,20 +98,47 @@ p {
         function displayData(data) {
             const container = document.getElementById('documentData');
             container.innerHTML = `
-                <h3>Status Dokumen: <span>${data.status}</span></h3>
-                <p><strong>Nama Suami:</strong> ${data.namaSuami}</p>
-                <p><strong>Nama Istri:</strong> ${data.namaIstri}</p>
-                <p><strong>Tanggal Kawin:</strong> ${data.tanggalKawin}</p>
-                <p><strong>No. Akta:</strong> ${data.noAkta}</p>
+                <h3>Status Dokumen: <span class="status">${data.status}</span></h3>
+                <div>
+                    <span class="label">Nama Suami:</span>
+                    <span class="value">${data.namaSuami}</span>
+                </div>
+                <div>
+                    <span class="label">Nama Istri:</span>
+                    <span class="value">${data.namaIstri}</span>
+                </div>
+                <div>
+                    <span class="label">Tanggal Kawin:</span>
+                    <span class="value">${data.tanggalKawin}</span>
+                </div>
+                <div>
+                    <span class="label">No. Akta:</span>
+                    <span class="value">${data.noAkta}</span>
+                </div>
                 <hr>
                 <h4>Info Penandatangan</h4>
-                <p><strong>Daerah:</strong> ${data.daerah}</p>
-                <p><strong>Lembaga:</strong> ${data.lembaga}</p>
-                <p><strong>Penandatangan:</strong> ${data.penandatangan}</p>
+                <div>
+                    <span class="label">Daerah:</span>
+                    <span class="value">${data.daerah}</span>
+                </div>
+                <div>
+                    <span class="label">Lembaga:</span>
+                    <span class="value">${data.lembaga}</span>
+                </div>
+                <div>
+                    <span class="label">Penandatangan:</span>
+                    <span class="value">${data.penandatangan}</span>
+                </div>
                 <hr>
                 <h4>Informasi</h4>
-                <p><strong>Tanggal Pindai:</strong> ${new Date(data.tglPindai).toLocaleString()}</p>
-                <p><strong>Tgl. Penandatanganan:</strong> ${new Date(data.tglPenandatanganan).toLocaleString()}</p>
+                <div>
+                    <span class="label">Tanggal Pindai:</span>
+                    <span class="value">${new Date(data.tglPindai).toLocaleString()}</span>
+                </div>
+                <div>
+                    <span class="label">Tgl. Penandatanganan:</span>
+                    <span class="value">${new Date(data.tglPenandatanganan).toLocaleString()}</span>
+                </div>
             `;
         }
 
@@ -79,11 +147,16 @@ p {
             const id = getQueryParam('id');
             if (!id) {
                 document.getElementById('documentData').innerText = "ID Dokumen tidak ditemukan di URL.";
+                console.error("Error: ID dokumen tidak ditemukan di URL.");
                 return;
             }
 
             try {
-                const response = await fetch('data.json');
+                const response = await fetch('data.json'); // pastikan path ini benar
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                
                 const data = await response.json();
                 const documentData = data.find(doc => doc.id === id);
 
@@ -91,6 +164,7 @@ p {
                     displayData(documentData);
                 } else {
                     document.getElementById('documentData').innerText = "Data dokumen tidak ditemukan.";
+                    console.error("Error: Data dokumen tidak ditemukan.");
                 }
             } catch (error) {
                 console.error("Error fetching data:", error);
